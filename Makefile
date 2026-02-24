@@ -18,3 +18,6 @@ rmi:
 
 run:
 	dotnet run --project $(API_PATH)
+
+start:
+	docker compose up db redis -d
