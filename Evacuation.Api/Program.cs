@@ -76,11 +76,11 @@ using (var scope = app.Services.CreateScope())
     try
     {
         dbContext.Database.Migrate();
-        Console.WriteLine("✅ Database migrated successfully");
+        Console.WriteLine("Database migrated successfully");
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"❌ Migration failed: {ex.Message}");
+        Console.WriteLine($"Migration failed: {ex.Message}");
         throw;
     }
 }

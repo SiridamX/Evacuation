@@ -46,4 +46,27 @@ public class EvacuationController : ControllerBase
         await _mediator.Send(new ResetEvacuationCommand());
         return NoContent();
     }
+
+    [HttpPost("test")]
+    public async Task<IActionResult> Test()
+    {
+        int[] numbers = new[] { 1, 1, 2, 3, 4, 5 };
+
+        var result = numbers
+            .GroupBy(z => z)
+            .Select(g => new ZoneCountResponse
+            {
+                Number = g.Key,
+                Count = g.Count()
+            })
+            .ToList();
+
+        return Ok(result);
+    }
+
+    public class ZoneCountResponse
+    {
+        public int Number { get; set; }
+        public int Count { get; set; }
+    }
 }
