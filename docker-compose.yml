@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:5000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db;Database=Evacuation;User Id=sa;Password=Supper@P@ssword009;TrustServerCertificate=True;"
+      ConnectionStrings__Redis: "redis:6379"
+      ASPNETCORE_URLS: "http://+:5000"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    networks:
+      - Evacuation_network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: EvacuationDb
+    restart: no
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Supper@P@ssword009
+      - MSSQL_DB=Evacuation
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    networks:
+      - Evacuation_network
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+    - redis_data:/data
+    container_name: EvacuationRedis
+    restart: no
+    ports:
+      - "6379:6379"
+    networks:
+      - Evacuation_network
+
+networks:
+  Evacuation_network:
+
+volumes:
+  mssql_data:
+  redis_data:
