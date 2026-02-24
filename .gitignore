@@ -1,0 +1,13 @@
+Evacuation/Evacuation.Api/bin/
+Evacuation/Evacuation.Api/obj/
+
+Evacuation/Evacuation.Application/bin/
+Evacuation/Evacuation.Application/obj/
+
+Evacuation/Evacuation.Domain/bin/
+Evacuation/Evacuation.Domain/obj/
+
+Evacuation/Evacuation.Infrastructure/bin/
+Evacuation/Evacuation.Infrastructure/obj/
+
+Evacuation/Evacuation.Test/**
